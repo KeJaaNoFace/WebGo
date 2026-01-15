@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="id" class="dark-mode">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- ========== SEO META TAGS ========== -->
+    <title>WebGo - Website Profesional | Go International</title>
+    <meta name="description" content="WebGo membuat website profesional untuk UMKM mulai 30rb. Bantu bisnis kecil go international dengan website responsive dan modern.">
+    <meta name="keywords" content="jasa website murah, buat website UMKM, website 30rb, website profesional, web developer">
+    <meta name="author" content="WebGo">
+    <meta property="og:title" content="WebGo - Website Profesional UMKM Start 30rb">
+    <meta property="og:description" content="Website profesional untuk UMKM mulai 30rb. Go international dengan WebGo.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://webgo.vercel.app">
+    <meta property="og:image" content="https://webgo.vercel.app/assets/images/og-image.jpg">
+    <link rel="canonical" href="https://webgo.vercel.app">
+    
+    <!-- ========== FONTS & ICONS ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- ========== EXTERNAL LIBRARIES ========== -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    
+    <!-- ========== FAVICON ========== -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <style>
+        /* ========== CSS RESET & GLOBAL ========== */
+        :root {
+            /* Color Palette - Putih, Biru, Hitam */
+            --primary-blue: #2563EB;
+            --primary-blue-dark: #1D4ED8;
+            --primary-black: #111827;
+            --primary-white: #FFFFFF;
+            --gray-light: #F9FAFB;
+            --gray-medium: #E5E7EB;
+            --gray-dark: #6B7280;
+            
+            /* Spacing */
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 6rem;
+            
+            /* Typography */
+            --font-primary: 'Inter', sans-serif;
+            --font-secondary: 'Poppins', sans-serif;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 50px -12px rgba(0,0,0,0.25);
+            
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: var(--font-primary);
+            color: var(--primary-black);
+            background-color: var(--primary-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color var(--transition-base);
+        }
+        
+        /* ========== TYPOGRAPHY ========== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-secondary);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-blue);
+            border-radius: 2px;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--gray-dark);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* ========== LAYOUT & CONTAINERS ========== */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+        
+        section {
+            padding: var(--spacing-xl) 0;
+            position: relative;
+        }
+        
+        /* ========== BUTTONS ========== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-family: var(--font-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--primary-white);
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-blue-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--primary-white);
+            transform: translateY(-2px);
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+        
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-medium);
+            transition: all var(--transition-base);
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary-black);
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--primary-black);
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width var(--transition-base);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-black);
+            cursor: pointer;
+        }
+        
+        /* ========== HERO SECTION ========== */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 6rem;
+            background: linear-gradient(135deg, #f6f9ff 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-blue);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: var(--spacing-xl);
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+        }
+        
+        /* ========== FEATURES SECTION ========== */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .feature-card {
+            background: var(--primary-white);
+            border-radius: 16px;
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-medium);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-blue);
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+        }
+        
+        /* ========== PROCESS SECTION ========== */
+        .process-timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin-top: var(--spacing-xl);
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gray-medium);
+            z-index: 0;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+            border: 5px solid white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        /* ========== PRICING CALCULATOR ========== */
+        .calculator-container {
+            background: var(--gray-light);
+            border-radius: 20px;
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+            border: 1px solid var(--gray-medium);
+        }
+        
+        .calculator-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .calc-slider {
+            width: 100%;
+            margin: 10px 0;
+            -webkit-appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--gray-medium);
+            outline: none;
+        }
+        
+        .calc-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .price-display {
+            text-align: center;
+            padding: var(--spacing-lg);
+            background: white;
+            border-radius: 16px;
+            border: 2px dashed var(--primary-blue);
+        }
+        
+        .final-price {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin: 0;
+        }
+        
+        /* ========== DEMO SHOWCASE ========== */
+        .demo-showcase {
+            background: var(--gray-light);
+            border-radius: 20px;
+            padding: var(--spacing-xl);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .demo-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+        
+        .demo-tab {
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid var(--gray-medium);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .demo-tab.active {
+            border-color: var(--primary-blue);
+            background: var(--primary-blue);
+            color: white;
+        }
+        
+        .demo-preview {
+            min-height: 400px;
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--gray-medium);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* ========== CONTACT FORM ========== */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-medium);
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-black);
+        }
+        
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid var(--gray-medium);
+            border-radius: 8px;
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: border-color var(--transition-fast);
+        }
+        
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--primary-black);
+            color: white;
+            padding: var(--spacing-xl) 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: var(--spacing-md);
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .social-link:hover {
+            background: var(--primary-blue);
+            transform: translateY(-3px);
+        }
+        
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media (max-width: 1024px) {
+            .process-timeline::before {
+                display: none;
+            }
+            
+            .process-step {
+                min-width: 100%;
+                display: flex;
+                align-items: center;
+                text-align: left;
+                gap: 1rem;
+            }
+            
+            .step-number {
+                margin: 0;
+                flex-shrink: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all var(--transition-base);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            section {
+                padding: var(--spacing-lg) 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.75rem;
+            }
+            
+            .container {
+                padding: 0 var(--spacing-sm);
+            }
+            
+            .calculator-container,
+            .demo-showcase,
+            .contact-form {
+                padding: var(--spacing-md);
+            }
+        }
+        
+        /* ========== ANIMATION CLASSES ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity var(--transition-slow), transform var(--transition-slow);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+        }
+        
+        /* ========== CUSTOM CURSOR ========== */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s;
+        }
+        
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--primary-blue);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.2s ease-out;
+        }
+        
+        /* ========== LOADING ANIMATION ========== */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--gray-medium);
+            border-top-color: var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* ========== WHATSAPP FLOATING BUTTON ========== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: var(--shadow-xl);
+            z-index: 100;
+            transition: all var(--transition-fast);
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background: #128C7E;
+        }
+        
+        /* ========== DARK MODE ========== */
+        body.dark-mode {
+            background-color: #0F172A;
+            color: #F1F5F9;
+        }
+        
+        body.dark-mode .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            border-bottom-color: #1E293B;
+        }
+        
+        body.dark-mode .feature-card,
+        body.dark-mode .calculator-container,
+        body.dark-mode .contact-form {
+            background: #1E293B;
+            border-color: #334155;
+            color: #F1F5F9;
+        }
+        
+        body.dark-mode .form-input,
+        body.dark-mode .form-textarea {
+            background: #334155;
+            border-color: #475569;
+            color: #F1F5F9;
+        }
+        
+        /* ========== THEME TOGGLE ========== */
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--primary-black);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background var(--transition-fast);
+        }
+        
+        body.dark-mode .theme-toggle {
+            color: #F1F5F9;
+        }
+        
+        .theme-toggle:hover {
+            background: rgba(0,0,0,0.1);
+        }
+        
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== LOADING SCREEN ========== -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader"></div>
+    </div>
+    
+    <!-- ========== CUSTOM CURSOR ========== -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+    
+    <!-- ========== WHATSAPP FLOAT BUTTON ========== -->
+    <a href="https://wa.me/62881027126485?text=Halo%20WebGo%2C%20saya%20mau%20konsultasi%20website" 
+       class="whatsapp-float" target="_blank" id="whatsappFloat">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <span>WebGo</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Fitur</a>
+                <a href="#process" class="nav-link">Proses</a>
+                <a href="#demo" class="nav-link">Demo</a>
+                <a href="#pricing" class="nav-link">Harga</a>
+                <a href="#contact" class="nav-link">Order</a>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" id="home">
+        <div class="hero-bg-elements">
+            <!-- Animated background elements will be added via JS -->
+        </div>
+        
+        <div class="container hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-bolt"></i> Start dari 30rb
+            </div>
+            
+            <h1>Website Profesional UMKM, <span class="text-gradient">Go International</span></h1>
+            
+            <p class="hero-subtitle">
+                Bantu bisnis kecil naik level dengan website affordable. Tanpa ribet, tanpa biaya tersembunyi. 
+                Harga transparan, hasil profesional.
+            </p>
+            
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">
+                    <i class="fas fa-calendar-check"></i> Pesan Sekarang
+                </a>
+                <a href="#demo" class="btn btn-secondary">
+                    <i class="fas fa-play-circle"></i> Lihat Demo
+                </a>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="50">0</span>
+                    <span class="stat-label">Projek Selesai</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="100">0</span>
+                    <span class="stat-label">Client Puas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="24">0</span>
+                    <span class="stat-label">Support Jam</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========== FEATURES SECTION ========== -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mengapa Pilih WebGo?</h2>
+                <p>Kami memberikan yang terbaik untuk bisnis Anda</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Harga Terjangkau</h3>
+                    <p>Start dari 30rb saja. Harga transparan tanpa biaya tersembunyi. Cocok untuk UMKM dan pemula.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Proses Cepat</h3>
+                    <p>Website siap secepatnya. Konsultasi gratis, revisi sampai puas. Fokus pada bisnis Anda.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Parah</h3>
+                    <p>Tampilan optimal di semua device. Mobile-first design untuk pengalaman terbaik pengguna.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>SEO Friendly</h3>
+                    <p>Optimasi untuk mesin pencari. Bantu bisnis ditemukan lebih mudah oleh calon pelanggan.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Support 1-on-1</h3>
+                    <p>Bimbingan penggunaan website. Support via WhatsApp langsung dengan tim kami.</p>
+                </div>
+                
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Go International</h3>
+                    <p>Desain modern untuk pasar global. Bantu produk UMKM bersaing di tingkat internasional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========== PROCESS SECTION ========== -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Proses Sederhana</h2>
+                <p>Dari konsultasi sampai website live hanya 4 langkah</p>
+            </div>
+            
+            <div class="process-timeline">
+                <div class="process-step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Konsultasi Gratis</h3>
+                    <p>Ceritakan kebutuhan bisnis Anda via WhatsApp. Kami berikan solusi terbaik.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Desain & Development</h3>
+                    <p>Kami buatkan website sesuai brand Anda. Preview sebelum lanjut ke tahap berikutnya.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Review & Revisi</h3>
+                    <p>Anda kasih feedback, kami perbaiki. Revisi sampai Anda puas dengan hasilnya.</p>
+                </div>
+                
+                <div class="process-step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Launch & Support</h3>
+                    <p>Website go live! Plus bimbingan penggunaan untuk tim Anda.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========== DEMO SECTION ========== -->
+    <section class="demo" id="demo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Live Component Demo</h2>
+                <p>Interaksi langsung dengan komponen website premium</p>
+            </div>
+            
+            <div class="demo-showcase">
+                <div class="demo-tabs">
+                    <div class="demo-tab active" data-tab="pricing">Pricing Card</div>
+                    <div class="demo-tab" data-tab="contact">Contact Form</div>
+                    <div class="demo-tab" data-tab="gallery">Product Gallery</div>
+                    <div class="demo-tab" data-tab="navigation">Navigation</div>
+                </div>
+                
+                <div class="demo-preview" id="demoPreview">
+                    <!-- Demo content will be loaded via JS -->
+                    <div class="demo-content pricing-demo">
+                        <div class="demo-card" style="max-width: 400px; margin: 0 auto;">
+                            <div class="demo-card-header">
+                                <h3 style="color: var(--primary-blue);">Basic Package</h3>
+                                <div class="price-slider-demo">
+                                    <input type="range" min="30" max="500" value="30" class="demo-slider" id="priceSlider">
+                                    <div class="demo-price-display">
+                                        <h2 style="font-size: 3rem; color: var(--primary-blue); margin: 10px 0;">
+                                            Rp <span id="dynamicPrice">30</span>k
+                                        </h2>
+                                        <p style="color: var(--gray-dark);">Start dari 30rb, harga menyesuaikan kebutuhan</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p><i class="fas fa-info-circle"></i> Coba hover, click, dan drag slider di atas untuk interaksi!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========== PRICING CALCULATOR ========== -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Estimasi Harga Transparan</h2>
+                <p>Hitung estimasi harga website Anda sesuai kebutuhan</p>
+            </div>
+            
+            <div class="calculator-container">
+                <div class="calculator-controls">
+                    <div class="calc-group">
+                        <label class="form-label">Jumlah Halaman</label>
+                        <input type="range" min="1" max="10" value="1" class="calc-slider" id="pageSlider">
+                        <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                            <span>1 Halaman</span>
+                            <span id="pageValue">1 Halaman</span>
+                            <span>10+ Halaman</span>
+                        </div>
+                    </div>
+                    
+                    <div class="calc-group">
+                        <label class="form-label">Fitur Khusus</label>
+                        <select class="form-input" id="featureSelect">
+                            <option value="0">Landing Page Basic</option>
+                            <option value="50">+ Product Gallery</option>
+                            <option value="80">+ Contact Form & Maps</option>
+                            <option value="120">+ E-commerce Basic</option>
+                            <option value="200">+ Blog & Admin Panel</option>
+                        </select>
+                    </div>
+                    
+                    <div class="calc-group">
+                        <label class="form-label">Timeline</label>
+                        <div style="display: flex; gap: 10px;">
+                            <button class="btn btn-secondary timeline-btn active" data-value="0">Standar (7 hari)</button>
+                            <button class="btn btn-secondary timeline-btn" data-value="50">Express (1 hari)</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="price-display">
+                    <p>Estimasi Harga:</p>
+                    <h2 class="final-price" id="finalPrice">Rp 30k</h2>
+                    <p class="price-note">*Harga final setelah konsultasi</p>
+                    <a href="#contact" class="btn btn-primary btn-lg">
+                        <i class="fas fa-whatsapp"></i> Konsultasi Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========== CONTACT SECTION ========== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pesan Website Anda</h2>
+                <p>Isi form dan langsung terhubung ke WhatsApp kami</p>
+            </div>
+            
+            <div class="contact-form">
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Nama Lengkap</label>
+                        <input type="text" id="name" class="form-input" required placeholder="Nama Anda">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="whatsapp">Nomor WhatsApp</label>
+                        <input type="tel" id="whatsapp" class="form-input" required placeholder="08xxxxxxxxxx">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="business">Jenis Bisnis</label>
+                        <select id="business" class="form-input">
+                            <option value="">Pilih jenis bisnis</option>
+                            <option value="makanan">Makanan & Minuman</option>
+                            <option value="fashion">Fashion & Aksesoris</option>
+                            <option value="jasa">Jasa & Konsultan</option>
+                            <option value="retail">Retail & Toko Online</option>
+                            <option value="lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="budget">Budget Range</label>
+                        <select id="budget" class="form-input">
+                            <option value="30-50">30rb - 50rb</option>
+                            <option value="50-100">50rb - 100rb</option>
+                            <option value="100-200">100rb - 200rb</option>
+                            <option value="200+">200rb+</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="message">Kebutuhan Website</label>
+                        <textarea id="message" class="form-textarea" 
+                                  placeholder="Ceritakan kebutuhan website Anda, fitur yang diinginkan, referensi website, dll." 
+                                  rows="4"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-whatsapp" style="width: 100%; padding: 16px;">
+                        <i class="fab fa-whatsapp"></i> Kirim ke WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" style="color: white; margin-bottom: 1rem;">
+                        <div class="logo-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <span>WebGo</span>
+                    </div>
+                    <p>Membantu UMKM go digital dengan website affordable dan profesional.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Layanan</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Website UMKM</a></li>
+                        <li><a href="#">Landing Page</a></li>
+                        <li><a href="#">E-commerce Basic</a></li>
+                        <li><a href="#">Website Portfolio</a></li>
+                        <li><a href="#">Website Company Profile</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> WhatsApp: 62881027126485</li>
+                        <li><i class="fas fa-envelope"></i> Email: keejagt@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> Support: 24/7</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Indonesia</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid #374151; margin-top: 3rem; padding-top: 2rem; text-align: center;">
+                <p>&copy; 2024 WebGo. All rights reserved.</p>
+                <p style="color: #9CA3AF; font-size: 0.9rem; margin-top: 0.5rem;">
+                    Website built with <i class="fas fa-heart" style="color: #EF4444;"></i> for Indonesian UMKM
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // ========== LOADING SCREEN ==========
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                loadingScreen.style.visibility = 'hidden';
+                
+                // Initialize animations after load
+                initAnimations();
+                initLenis();
+                initScrollAnimations();
+                initTheme();
+                initCustomCursor();
+            }, 800);
+        });
+        
+        // ========== MOBILE MENU TOGGLE ==========
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // ========== NAVBAR SCROLL EFFECT ==========
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // ========== ANIMATED COUNTERS ==========
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+        
+        // ========== FADE IN ON SCROLL ==========
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        function checkFade() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        // ========== PRICING CALCULATOR ==========
+        function updatePrice() {
+            const pageValue = parseInt(document.getElementById('pageSlider').value);
+            const featureValue = parseInt(document.getElementById('featureSelect').value);
+            const timelineValue = parseInt(document.querySelector('.timeline-btn.active').dataset.value);
+            
+            // Base price: 30k for first page
+            let total = 30;
+            
+            // Additional pages: 15k each after first
+            if (pageValue > 1) {
+                total += (pageValue - 1) * 15;
+            }
+            
+            // Add feature cost
+            total += featureValue;
+            
+            // Add express fee
+            total += timelineValue;
+            
+            // Update display
+            document.getElementById('pageValue').textContent = `${pageValue} Halaman`;
+            document.getElementById('finalPrice').textContent = `Rp ${total}k`;
+            
+            // Animate price change
+            gsap.fromTo('#finalPrice', 
+                { scale: 1.2, opacity: 0.7 },
+                { scale: 1, opacity: 1, duration: 0.3 }
+            );
+        }
+        
+        // ========== DEMO TABS ==========
+        const demoBtns = document.querySelectorAll('.demo-tab');
+        const demoPreview = document.getElementById('demoPreview');
+        
+        demoBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                demoBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Load demo content based on tab
+                const tab = btn.dataset.tab;
+                loadDemoContent(tab);
+            });
+        });
+        
+        function loadDemoContent(tab) {
+            let content = '';
+            
+            switch(tab) {
+                case 'pricing':
+                    content = `
+                        <div class="demo-content pricing-demo">
+                            <div class="demo-card" style="max-width: 400px; margin: 0 auto;">
+                                <div class="demo-card-header">
+                                    <h3 style="color: var(--primary-blue);">Basic Package</h3>
+                                    <div class="price-slider-demo">
+                                        <input type="range" min="30" max="500" value="30" class="demo-slider" id="priceSlider">
+                                        <div class="demo-price-display">
+                                            <h2 style="font-size: 3rem; color: var(--primary-blue); margin: 10px 0;">
+                                                Rp <span id="dynamicPrice">30</span>k
+                                            </h2>
+                                            <p style="color: var(--gray-dark);">Start dari 30rb, harga menyesuaikan kebutuhan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 20px;">
+                                    <button class="btn btn-primary" style="width: 100%;">Pesan Sekarang</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'contact':
+                    content = `
+                        <div class="demo-content contact-demo">
+                            <div class="demo-card" style="max-width: 500px; margin: 0 auto;">
+                                <h3 style="color: var(--primary-blue); margin-bottom: 20px;">Contact Form Demo</h3>
+                                <div style="display: grid; gap: 15px;">
+                                    <input type="text" class="form-input" placeholder="Nama Anda" style="width: 100%;">
+                                    <input type="email" class="form-input" placeholder="Email" style="width: 100%;">
+                                    <textarea class="form-input" placeholder="Pesan Anda" rows="3" style="width: 100%;"></textarea>
+                                    <button class="btn btn-primary">Kirim Pesan</button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'gallery':
+                    content = `
+                        <div class="demo-content gallery-demo">
+                            <h3 style="color: var(--primary-blue); margin-bottom: 20px; text-align: center;">Product Gallery</h3>
+                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                                <div style="background: var(--gray-light); height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-image" style="font-size: 2rem; color: var(--gray-dark);"></i>
+                                </div>
+                                <div style="background: var(--gray-light); height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-image" style="font-size: 2rem; color: var(--gray-dark);"></i>
+                                </div>
+                                <div style="background: var(--gray-light); height: 120px; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fas fa-image" style="font-size: 2rem; color: var(--gray-dark);"></i>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                    
+                case 'navigation':
+                    content = `
+                        <div class="demo-content navigation-demo">
+                            <h3 style="color: var(--primary-blue); margin-bottom: 20px; text-align: center;">Responsive Navigation</h3>
+                            <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid var(--gray-medium);">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div style="font-weight: bold; color: var(--primary-blue);">Logo</div>
+                                    <div style="display: flex; gap: 20px;">
+                                        <span style="color: var(--primary-black);">Home</span>
+                                        <span style="color: var(--primary-black);">About</span>
+                                        <span style="color: var(--primary-black);">Services</span>
+                                        <span style="color: var(--primary-black);">Contact</span>
+                                    </div>
+                                    <button class="btn btn-primary" style="padding: 8px 16px;">Order Now</button>
+                                </div>
+                            </div>
+                            <p style="text-align: center; margin-top: 20px; color: var(--gray-dark);">
+                                Navigation akan berubah menjadi hamburger menu di mobile
+                            </p>
+                        </div>
+                    `;
+                    break;
+            }
+            
+            // Animate content change
+            gsap.to(demoPreview, {
+                opacity: 0,
+                duration: 0.2,
+                onComplete: () => {
+                    demoPreview.innerHTML = content;
+                    gsap.to(demoPreview, { opacity: 1, duration: 0.3 });
+                    
+                    // Re-initialize demo slider if exists
+                    const demoSlider = document.getElementById('priceSlider');
+                    if (demoSlider) {
+                        demoSlider.addEventListener('input', function() {
+                            document.getElementById('dynamicPrice').textContent = this.value;
+                        });
+                    }
+                }
+            });
+        }
+        
+        // ========== WHATSAPP FORM INTEGRATION ==========
+        const orderForm = document.getElementById('orderForm');
+        
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const business = document.getElementById('business').value;
+            const budget = document.getElementById('budget').value;
+            const message = document.getElementById('message').value;
+            
+            // Format WhatsApp message
+            const whatsappMessage = 
+`Halo WebGo! Saya ${name}.
+
+Saya tertarik buat website untuk bisnis ${business}.
+Budget: Rp ${budget.replace('-', 'rb - ')}rb
+Kebutuhan: ${message}
+
+Hubungi saya di: ${whatsapp}`;
+
+            // Encode message for URL
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // Replace with your actual WhatsApp number
+            const phoneNumber = '62881027126485';
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            // Open WhatsApp in new tab
+            window.open(whatsappURL, '_blank');
+            
+            // Show success animation
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Terkirim!';
+            submitBtn.style.background = '#10B981';
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+                orderForm.reset();
+            }, 3000);
+        });
+        
+        // ========== THEME TOGGLE ==========
+        function initTheme() {
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = themeToggle.querySelector('i');
+            
+            // Check for saved theme or prefer color scheme
+            const savedTheme = localStorage.getItem('theme') || 
+                              (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+            
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
+        
+        // ========== CUSTOM CURSOR ==========
+        function initCustomCursor() {
+            const cursorDot = document.getElementById('cursorDot');
+            const cursorOutline = document.getElementById('cursorOutline');
+            
+            if (window.innerWidth > 768) {
+                document.addEventListener('mousemove', (e) => {
+                    const posX = e.clientX;
+                    const posY = e.clientY;
+                    
+                    cursorDot.style.left = `${posX}px`;
+                    cursorDot.style.top = `${posY}px`;
+                    
+                    cursorOutline.style.left = `${posX}px`;
+                    cursorOutline.style.top = `${posY}px`;
+                    cursorOutline.style.transform = `translate(-50%, -50%)`;
+                });
+                
+                // Interactive elements effect
+                const interactiveElements = document.querySelectorAll('a, button, .feature-card, .demo-tab, input, textarea, select');
+                
+                interactiveElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursorDot.style.transform = 'scale(1.5)';
+                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                    });
+                    
+                    el.addEventListener('mouseleave', () => {
+                        cursorDot.style.transform = 'scale(1)';
+                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                    });
+                });
+            } else {
+                cursorDot.style.display = 'none';
+                cursorOutline.style.display = 'none';
+            }
+        }
+        
+        // ========== SMOOTH SCROLL (LENIS) ==========
+        function initLenis() {
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smoothWheel: true,
+            });
+            
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            
+            requestAnimationFrame(raf);
+        }
+        
+        // ========== GSAP ANIMATIONS ==========
+        function initAnimations() {
+            // Animate hero elements
+            gsap.from('.hero-badge', {
+                duration: 1,
+                y: 30,
+                opacity: 0,
+                ease: 'power3.out'
+            });
+            
+            gsap.from('h1', {
+                duration: 1.2,
+                y: 50,
+                opacity: 0,
+                delay: 0.2,
+                ease: 'power3.out'
+            });
+            
+            gsap.from('.hero-subtitle', {
+                duration: 1,
+                y: 30,
+                opacity: 0,
+                delay: 0.4,
+                ease: 'power3.out'
+            });
+            
+            gsap.from('.hero-cta', {
+                duration: 1,
+                y: 30,
+                opacity: 0,
+                delay: 0.6,
+                ease: 'power3.out'
+            });
+            
+            // Animate stat counters after they're in view
+            const statNumbers = document.querySelectorAll('.stat-number[data-count]');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.dataset.count);
+                animateCounter(stat, target);
+            });
+        }
+        
+        function initScrollAnimations() {
+            // Create ScrollTrigger animations for sections
+            gsap.utils.toArray('section').forEach(section => {
+                gsap.from(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    y: 50,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power3.out'
+                });
+            });
+        }
+        
+        // ========== INITIALIZE EVERYTHING ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize price calculator
+            document.getElementById('pageSlider').addEventListener('input', updatePrice);
+            document.getElementById('featureSelect').addEventListener('change', updatePrice);
+            document.querySelectorAll('.timeline-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.timeline-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    updatePrice();
+                });
+            });
+            
+            // Initialize demo
+            const demoSlider = document.getElementById('priceSlider');
+            if (demoSlider) {
+                demoSlider.addEventListener('input', function() {
+                    document.getElementById('dynamicPrice').textContent = this.value;
+                });
+            }
+            
+            // Initialize scroll animations check
+            window.addEventListener('scroll', checkFade);
+            checkFade(); // Check on load
+            
+            // Add floating animation to some elements
+            gsap.to('.logo-icon', {
+                y: 10,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut"
+            });
+            
+            // Initialize price on load
+            updatePrice();
+        });
+    </script>
+</body>
+</html>
